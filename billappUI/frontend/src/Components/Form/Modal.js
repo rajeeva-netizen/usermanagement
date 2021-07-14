@@ -2,7 +2,10 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Modal, Button } from 'antd';
 import Addcutomers from './Form'
-const OpenForm = () => {
+import {connect} from 'react-redux'
+import {submit} from '../../Actions/submitActions'
+
+const OpenForm = ({submit}) => {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
 
@@ -19,7 +22,7 @@ const OpenForm = () => {
     setTimeout(() => {
         alert('new customer added')
       }, 3000)
-    
+    submit(true)
   };
 
   const handleCancel = () => {
@@ -45,4 +48,5 @@ const OpenForm = () => {
   );
 };
 
-export default OpenForm
+
+export default connect(null, {submit})(OpenForm)
