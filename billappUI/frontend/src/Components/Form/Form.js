@@ -1,6 +1,7 @@
 import React, {useState}from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
   }));
 
   
-  export default function Addcutomers() {
-
+function Addcutomers({boolVal}) {
+console.log(boolVal)
     const [name, useName] = useState('')
     const [area, useArea] = useState('')
     const [breakFast, useBreakFast] = useState(0)
@@ -117,3 +118,7 @@ const useStyles = makeStyles((theme) => ({
 
     )
 }
+const mapStateToProps=(state)=>({
+  boolVal:state.boolVal
+})
+export default connect (mapStateToProps)(Addcutomers)
