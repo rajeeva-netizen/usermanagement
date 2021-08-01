@@ -45,11 +45,14 @@ app.get('/customers', (req, res)=>{
 app.post('/newcustomer', (req, res)=>{
 
     const params = req.body
+    // const {name, Area, lunch, breakfast, dinner} = req.body
+    // const postquery = INSERT INTO mydb (name, Area, lunch, breakfast, dinner) VALUES 
     con.query('INSERT INTO customer SET ?', params,(err, rows)=>{
         if(!err){
             res.send('new customer is added')
         }else{
             console.log(err)
+            res.send(err)
         }
     })
 })
