@@ -1,7 +1,8 @@
-import {SUBMIT_OK} from '../Actions/type'
+import {SUBMIT_OK, ADD_CUSTOMERS} from '../Actions/type'
 
 const intialState = {
-    boolVal:""
+    boolVal:"",
+    cutomersData:["", "", "", "", "", ""] // Name, AreaName, BF, Lunch, Dinner
 }
 
 const reducer = (state = intialState, action)=>{
@@ -10,6 +11,11 @@ const reducer = (state = intialState, action)=>{
             return{
                 ...state,
                 boolVal:action.bool
+            }
+        case ADD_CUSTOMERS:
+            return{
+                ...state,
+                cutomersData:action.res
             }
             default: return state
     }
