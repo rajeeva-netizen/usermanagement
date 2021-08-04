@@ -30,8 +30,27 @@ app.get('/', (req, res)=>{
 app.get('/customers', (req, res)=>{
     // con.getConnection((err, connection)=>{
     //     if(err) throw err
-
+            
         con.query('SELECT * FROM customer', (err, rows)=>{
+            // connection.release()
+            if(!err){
+                res.send(rows)
+                console.log(rows)
+            }else{
+                console.log(err)
+            }
+        })
+    })
+// })
+
+app.get('/customer/:name', (req, res)=>{
+    // con.getConnection((err, connection)=>{
+    //     if(err) throw err
+    const name = req.params.name
+    console.log('rajeeva', name)
+
+    const getquery = `select * from customer where name = 'rajeeva' `
+        con.query(getquery, (err, rows)=>{
             // connection.release()
             if(!err){
                 res.send(rows)
@@ -40,14 +59,13 @@ app.get('/customers', (req, res)=>{
             }
         })
     })
-// })
 
-app.post('/newcustomer', (req, res)=>{
+app.post('/newcustomer', async(req, res, next)=>{
 
     const params = req.body
     // const {name, Area, lunch, breakfast, dinner} = req.body
-    // const postquery = INSERT INTO mydb (name, Area, lunch, breakfast, dinner) VALUES 
-    con.query('INSERT INTO customer SET ?', params,(err, rows)=>{
+     const postquery = "INSERT INTO customer (name, Area, lunch, breakfast, dinner) VALUES (`${req.body.name}`)"
+    con.query(params,(err, rows)=>{
         if(!err){
             res.send('new customer is added')
         }else{
@@ -55,6 +73,13 @@ app.post('/newcustomer', (req, res)=>{
             res.send(err)
         }
     })
+
+    // try{
+    //     res.json(await con.create(req.body));
+    // }catch(err){
+    //     console.log(err)
+    //     next(err)
+    // }
 })
 app.listen(port, ()=>{
     console.log(`server is running at port ${port}`)
