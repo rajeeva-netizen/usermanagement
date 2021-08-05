@@ -43,13 +43,13 @@ app.get('/customers', (req, res)=>{
     })
 // })
 
-app.get('/customer/:name', (req, res)=>{
+app.get('/customers/:name', (req, res)=>{
     // con.getConnection((err, connection)=>{
     //     if(err) throw err
     const name = req.params.name
     console.log('rajeeva', name)
 
-    const getquery = `select * from customer where name = 'rajeeva' `
+    const getquery = "select * from customer where Name = " + req.params.name
         con.query(getquery, (err, rows)=>{
             // connection.release()
             if(!err){
