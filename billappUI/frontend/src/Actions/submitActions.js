@@ -13,11 +13,11 @@ export const submit=(bool)=>{
 export const sendData=(val)=>{
     console.log(val)
     return (dispatch)=>{
-        axios.post('localhost:4000/newcustomer', val)
-        .then(res=>{
+        axios.post('http://localhost:4000/newcustomer', val)
+        .then((res)=>{
             dispatch({
                 type:ADD_CUSTOMERS,
-                val
+                 val
             })
             console.log(res)
         })
