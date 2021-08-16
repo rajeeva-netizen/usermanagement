@@ -2,7 +2,7 @@ import React, {useState}from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import {connect} from 'react-redux'
-
+import {sendData} from '../../Actions/submitActions'
 const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
   
-function Addcutomers({boolVal}) {
+function Addcutomers({boolVal, sendData}) {
 console.log(boolVal)
     const [name, useName] = useState('')
     const [area, useArea] = useState('')
@@ -43,9 +43,12 @@ console.log(boolVal)
       console.log(e.target.value)
       useDinner(e.target.value)
     }
-  
+  // const submitData=()=>{
+  //   boolVal==='true'? sendData("hi"):null
+  // }
     const classes = useStyles();
     return (
+      <>
     <form className={classes.root} noValidate autoComplete="off">
         <div>
         <TextField
@@ -79,7 +82,7 @@ console.log(boolVal)
           id="outlined-full-width"
           label="BreakFast"
           style={{ margin: 8 }}
-          placeholder="Area Name"
+          placeholder="BreakFast"
           margin="normal"
           InputLabelProps={{
             shrink: true,
@@ -92,7 +95,7 @@ console.log(boolVal)
           id="outlined-full-width"
           label="Lunch"
           style={{ margin: 8 }}
-          placeholder="Area Name"
+          placeholder="Lunch"
           margin="normal"
           InputLabelProps={{
             shrink: true,
@@ -105,7 +108,7 @@ console.log(boolVal)
           id="outlined-full-width"
           label="Dinner"
           style={{ margin: 8 }}
-          placeholder="Area Name"
+          placeholder="Dinner"
           margin="normal"
           InputLabelProps={{
             shrink: true,
@@ -115,10 +118,14 @@ console.log(boolVal)
         />
         </div>
     </form>
-
+  {
+    boolVal === true? sendData([name, area,breakFast,lunch, dinner]):null
+  }
+  </>
     )
 }
 const mapStateToProps=(state)=>({
   boolVal:state.boolVal
 })
-export default connect (mapStateToProps)(Addcutomers)
+
+export default connect (mapStateToProps, {sendData})(Addcutomers)
