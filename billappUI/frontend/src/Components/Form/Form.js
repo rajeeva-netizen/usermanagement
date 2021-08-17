@@ -3,6 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import {connect} from 'react-redux'
 import {sendData} from '../../Actions/submitActions'
+import axios from 'axios'
+
 const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
@@ -43,9 +45,19 @@ console.log(boolVal)
       console.log(e.target.value)
       useDinner(e.target.value)
     }
-  // const submitData=()=>{
-  //   boolVal==='true'? sendData("hi"):null
-  // }
+  
+
+    const postCutomers =(name, address, lunch, breakfast, dinner )=>{
+      axios.post('http://localhost:4000//newcustomer', {
+        name, 
+        address,
+        lunch,
+        breakfast, 
+        dinner
+      }).then((res)=>{
+        console.log(res)
+      }).catch(err=>console.log(err))
+    }
     const classes = useStyles();
     return (
       <>
@@ -119,7 +131,7 @@ console.log(boolVal)
         </div>
     </form>
   {
-    boolVal === true? sendData([name, area,breakFast,lunch, dinner]):null
+    boolVal === true? sendData(name, area, lunch, breakFast, dinner):null
   }
   </>
     )
