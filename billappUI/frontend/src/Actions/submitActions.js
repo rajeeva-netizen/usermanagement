@@ -10,14 +10,19 @@ export const submit=(bool)=>{
     }
 }
 
-export const sendData=(val)=>{
-    console.log(val)
+export const sendData=(name, company, address, info)=>{
+    console.log(name, company, address, info)
     return (dispatch)=>{
-        axios.post('http://localhost:4000/newcustomer', val)
+        axios.post('https://digitechusers.herokuapp.com/newcustomer',{
+            name, 
+            company, 
+            address, 
+            info
+        })
         .then((res)=>{
             dispatch({
                 type:ADD_CUSTOMERS,
-                 val
+                payload:res.data
             })
             console.log(res)
         })
