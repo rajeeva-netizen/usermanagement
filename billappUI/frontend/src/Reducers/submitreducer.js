@@ -15,7 +15,7 @@ const reducer = (state = intialState, action)=>{
         case ADD_CUSTOMERS:
             return{
                 ...state,
-                cutomersData:action.res
+                cutomersData:action.payload
             }
             default: return state
     }

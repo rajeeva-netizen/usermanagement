@@ -14,6 +14,7 @@ const OpenForm = ({submit}) => {
   };
 
   const handleOk = () => {
+    submit(true)
     setConfirmLoading(true);
     setTimeout(() => {
       setVisible(false);
@@ -22,7 +23,7 @@ const OpenForm = ({submit}) => {
     setTimeout(() => {
         alert('new customer added')
       }, 3000)
-    submit(true)
+    
   };
 
   const handleCancel = () => {
