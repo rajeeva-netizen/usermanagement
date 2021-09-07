@@ -13,6 +13,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import IconButton from '@material-ui/core/IconButton';
+import Client from './indCus'
+import { Skeleton } from 'antd';
 
 const useStyles = makeStyles({
   table: {
@@ -40,7 +42,6 @@ const [state, setState] = React.useState({
 
 const HandleCheck=()=>{
   console.log('checkbox button')
-  // axios.get
 }
 
 
@@ -59,6 +60,8 @@ function handleSwitchChange (event) {
           <TableRow>
           <TableCell></TableCell>
             <TableCell>Name</TableCell>
+            <TableCell>Contact Number</TableCell>
+            <TableCell>Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -75,21 +78,17 @@ function handleSwitchChange (event) {
               <TableCell component="th" scope="row">
                 {customer.customer_name}
               </TableCell>
-
-              <TableCell align="left">
-              <FormControlLabel
-        control={<Switch onChange={handleSwitchChange} color="primary" name="checkedA"/>}
-      />
-              
-              
+              <TableCell component="th" scope="row">
+                {customer.contact_info}
               </TableCell>
+
               <TableCell align="left">
              
                   <DeleteIcon/>
               
               </TableCell>
             </TableRow>
-          )):null}
+          )):<Skeleton />}
         </TableBody>
       </Table>
     </TableContainer>

@@ -4,7 +4,8 @@ import OpenForm from '../Form/Modal'
 function Customer(){
     return(
         <>
-        <NavBar/>
+        {/* <NavBar/> */}
+        <OpenForm/>
         <CustomerTable/>
         </>
     )
