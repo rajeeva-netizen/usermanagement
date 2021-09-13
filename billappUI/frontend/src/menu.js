@@ -22,7 +22,10 @@ import {BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
 import Customer from './Components/customers/customer'
 import dashboard from './Components/dashboard/dashboard'
 import Payment from './Components/payment/payment'
+import indCus from './Components/customers/indCus'
 import DrawerForm from './Components/Form/Form2'
+import 'antd/dist/antd.css';
+import { Popover, Button } from 'antd';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -99,7 +102,13 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  
+  const content = (
+    <div>
+      <p>Content</p>
+      <p>Content</p>
+    </div>
+  );
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -122,7 +131,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Letsgitech panel
+            Admin panel
           </Typography>
           {/* <DrawerForm /> */}
         </Toolbar>
@@ -150,19 +159,30 @@ export default function MiniDrawer() {
         
         <List>
    
-   
+     
           <ListItem>
-              <ListItemIcon style={{cursor:"pointer"}}><DashboardIcon/></ListItemIcon>
+          
+          <Link to={'/dashboard'}> <ListItemIcon style={{cursor:"pointer"}}><DashboardIcon/></ListItemIcon></Link>
               <Link to={'/dashboard'}>Dashboard</Link>
               
             </ListItem>
+           
             <ListItem>
-              <ListItemIcon style={{cursor:"pointer"}}><PeopleIcon/></ListItemIcon>
+            
+            <Link to = {'/allcustomers'}><ListItemIcon style={{cursor:"pointer"}}><PeopleIcon/></ListItemIcon></Link>
               <Link to = {'/allcustomers'}>Cutomers</Link>
             </ListItem>
             <ListItem>
-              <ListItemIcon style={{cursor:"pointer"}}><PaymentIcon/></ListItemIcon>
+            <Link to = {'/payments'}><ListItemIcon style={{cursor:"pointer"}}><PaymentIcon/></ListItemIcon></Link >
               <Link to = {'/payments'}>Payments</Link >
+            </ListItem>
+            <ListItem>
+            <Link to = {'/projects'}> <ListItemIcon style={{cursor:"pointer"}}><PaymentIcon/></ListItemIcon></Link >
+              <Link to = {'/projects'}>Projects</Link >
+            </ListItem>
+            <ListItem>
+            <Link to = {'/billing'}><ListItemIcon style={{cursor:"pointer"}}><PaymentIcon/></ListItemIcon></Link >
+              <Link to = {'/billing'}>Billing</Link >
             </ListItem>
            
         </List>
@@ -178,6 +198,9 @@ export default function MiniDrawer() {
         <Route path='/dashboard' component = {dashboard}/>
              <Route exact path='/allcustomers' component = {Customer}/>
              <Route exact path='/payments' component = {Payment}/>
+             <Route exact path='/projects' component = {dashboard}/>
+             <Route exact path='/billing' component = {dashboard}/>
+             <Route exact path='/allcustomers/:id' component = {indCus}/>
       
         
       </main>
