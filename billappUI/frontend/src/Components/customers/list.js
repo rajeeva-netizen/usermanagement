@@ -97,7 +97,8 @@ const [state, setState] = React.useState({
 
 
 
-function handleDelete() {
+function handleDelete(id) {
+  console.log(id)
   confirm({
     title: 'Are you sure you want to delete?',
     icon: <ExclamationCircleOutlined />,

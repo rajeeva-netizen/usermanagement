@@ -11,20 +11,27 @@ const columns = [
     render: text => <a>{text}</a>,
   },
   {
-    title: 'Address',
+    title: 'Payment',
     dataIndex: 'address',
     key: 'address',
   },
   {
-    title: 'payment',
+    title: 'Modified Date',
+    dataIndex: 'Modified',
+    key: 'address',
+  },
+  {
+    title: 'Status',
     key: 'tags',
     dataIndex: 'tags',
     render: tags => (
       <>
         {tags.map(tag => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
+          let color = tag.length > 5 ? 'orange' : 'green';
           if (tag === 'Not paid') {
             color = 'volcano';
+          }else if(tag === 'partial paid'){
+            color = 'orange'
           }
           return (
             <Tag color={color} key={tag}>
@@ -51,22 +58,22 @@ const data = [
     key: '1',
     name: 'John Brown',
     age: 32,
-    address: 'New York No. 1 Lake Park',
+    address: '5000',
     tags: ['paid'],
   },
   {
     key: '2',
     name: 'Jim Green',
     age: 42,
-    address: 'London No. 1 Lake Park',
+    address: '6000',
     tags: ['Not paid'],
   },
   {
     key: '3',
     name: 'Joe Black',
     age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['paid'],
+    address: '2000',
+    tags: ['partial paid'],
   },
 ];
  const Payment = ()=>{
@@ -78,6 +85,9 @@ const data = [
     subTitle="Sorry, the page you visited does not exist."
     extra={<Button type="primary">Back Home</Button>}
   /> */}
+  <Button type="primary" style = {{marginRight:50, marginBottom:50}}>Paid</Button>
+  <Button type="primary" danger style = {{marginRight:50, marginBottom:50}}>Not Paid</Button>
+  <Button type="primary" style = {{marginRight:50, marginBottom:50}}>partial Paid</Button>
   <Table columns={columns} dataSource={data} />
     </>
  )
